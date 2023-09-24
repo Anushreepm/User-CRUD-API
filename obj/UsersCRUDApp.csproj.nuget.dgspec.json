@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "c:\\Users\\MAjithbabu\\OneDrive - Trellix\\Desktop\\Users Project\\UsersCRUDApp\\UsersCRUDApp.csproj": {}
+    "c:\\Users\\MAjithbabu\\OneDrive - Trellix\\New folder\\User-CRUD-API\\UsersCRUDApp.csproj": {}
   },
   "projects": {
-    "c:\\Users\\MAjithbabu\\OneDrive - Trellix\\Desktop\\Users Project\\UsersCRUDApp\\UsersCRUDApp.csproj": {
+    "c:\\Users\\MAjithbabu\\OneDrive - Trellix\\New folder\\User-CRUD-API\\UsersCRUDApp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\Users\\MAjithbabu\\OneDrive - Trellix\\Desktop\\Users Project\\UsersCRUDApp\\UsersCRUDApp.csproj",
+        "projectUniqueName": "c:\\Users\\MAjithbabu\\OneDrive - Trellix\\New folder\\User-CRUD-API\\UsersCRUDApp.csproj",
         "projectName": "UsersCRUDApp",
-        "projectPath": "c:\\Users\\MAjithbabu\\OneDrive - Trellix\\Desktop\\Users Project\\UsersCRUDApp\\UsersCRUDApp.csproj",
+        "projectPath": "c:\\Users\\MAjithbabu\\OneDrive - Trellix\\New folder\\User-CRUD-API\\UsersCRUDApp.csproj",
         "packagesPath": "C:\\Users\\MAjithbabu\\.nuget\\packages\\",
-        "outputPath": "c:\\Users\\MAjithbabu\\OneDrive - Trellix\\Desktop\\Users Project\\UsersCRUDApp\\obj\\",
+        "outputPath": "c:\\Users\\MAjithbabu\\OneDrive - Trellix\\New folder\\User-CRUD-API\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\MAjithbabu\\AppData\\Roaming\\NuGet\\NuGet.Config"
