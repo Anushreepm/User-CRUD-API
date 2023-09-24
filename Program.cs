@@ -8,13 +8,6 @@ var builder = WebApplication.CreateBuilder(args);
 // Load configuration from appsettings.json
 builder.Configuration.AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
 
-
-// // Load configuration from appsettings.json
-// builder.Configuration.AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
-
-// // Access configuration settings
-// var userDBConnectionString = builder.Configuration.GetConnectionString("userDBString");
-
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddMvc();
