@@ -1,0 +1,151 @@
+using NUnit.Framework;
+using UsersCRUDApp.Controllers; 
+using UsersCRUDApp.Models;
+using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
+using System.Linq;
+
+namespace UsersCRUDApp.Tests
+{
+    [TestFixture]
+    public class UsersControllerTests
+    {
+        private UsersController _controller;
+        private List<User> _fakeUserDatabase;
+
+        [SetUp]
+        public void Setup()
+        {
+            // Initialize an in-memory list for testing
+            _fakeUserDatabase = new List<User>
+            {
+                new User { Id = 1, FirstName = "John", LastName = "Doe", City = "New York", PhoneNumber = "123-456-7890" },
+                new User { Id = 2, FirstName = "Jane", LastName = "Smith", City = "Los Angeles", PhoneNumber = "987-654-3210" }
+            };
+
+            // Initialize the UsersController with the fake database
+            _controller = new UsersController(_fakeUserDatabase);
+        }
+
+        [Test]
+        public void Get_ReturnsListOfUsers()
+        {
+            // Act
+            var result = _controller.Get();
+
+            // Assert
+            Assert.IsInstanceOf(typeof(OkObjectResult), result);
+            var okResult = result as OkObjectResult;
+            Assert.IsInstanceOf(typeof(IEnumerable<User>), okResult.Value);
+            var users = okResult.Value as IEnumerable<User>;
+            Assert.AreEqual(2, users.Count());
+        }
+
+        [Test]
+        public void Get_ReturnsUserById()
+        {
+            // Arrange
+            int userId = 1;
+
+            // Act
+            var result = _controller.Get(userId);
+
+            // Assert
+            Assert.IsInstanceOf(typeof(OkObjectResult), result);
+            var okResult = result as OkObjectResult;
+            Assert.IsInstanceOf(typeof(User), okResult.Value);
+            var user = okResult.Value as User;
+            Assert.AreEqual(userId, user.Id);
+        }
+
+        [Test]
+        public void Get_WithInvalidId_ReturnsNotFound()
+        {
+            // Arrange
+            int invalidUserId = -1;
+
+            // Act
+            var result = _controller.Get(invalidUserId);
+
+            // Assert
+            Assert.IsInstanceOf(typeof(NotFoundResult), result);
+        }
+
+        [Test]
+        public void Post_ReturnsCreatedAtAction()
+        {
+            // Arrange
+            var newUser = new User { Id = 3, FirstName = "Alice", LastName = "Johnson", City = "Chicago",
+             PhoneNumber = "555-123-4567" };
+
+            // Act
+            var result = _controller.Post(newUser);
+
+            // Assert
+            Assert.IsInstanceOf(typeof(CreatedAtActionResult), result);
+        }
+
+        [Test]
+        public void Put_ReturnsNoContent()
+        {
+            // Arrange
+            int userId = 1;
+            var updatedUser = new User { Id = userId, FirstName = "Updated", LastName = "Doe",
+             City = "Updated City", PhoneNumber = "Updated Phone" };
+
+            // Act
+            var result = _controller.Put(userId, updatedUser);
+
+            // Assert
+            Assert.IsInstanceOf(typeof(NoContentResult), result);
+        }
+
+        [Test]
+        public void Put_WithInvalidId_ReturnsBadRequest()
+        {
+            // Arrange
+            int invalidUserId = -1;
+            var updatedUser = new User { Id = invalidUserId, FirstName = "Updated", LastName = "Doe",
+             City = "Updated City", PhoneNumber = "Updated Phone" };
+
+            // Act
+            var result = _controller.Put(invalidUserId, updatedUser);
+
+            // Assert
+            Assert.IsInstanceOf(typeof(BadRequestResult), result);
+        }
+
+        [Test]
+        public void Delete_ReturnsNoContent()
+        {
+            // Arrange
+            int userId = 1;
+
+            // Act
+            var result = _controller.Delete(userId);
+
+            // Assert
+            Assert.IsInstanceOf(typeof(NoContentResult), result);
+        }
+
+        [Test]
+        public void Delete_WithInvalidId_ReturnsNotFound()
+        {
+            // Arrange
+            int invalidUserId = -1;
+
+            // Act
+            var result = _controller.Delete(invalidUserId);
+
+            // Assert
+            Assert.IsInstanceOf(typeof(NotFoundResult), result);
+        }
+
+        [TearDown]
+        public void TearDown()
+        {
+            // Clean up resources, such as the in-memory list
+            _fakeUserDatabase.Clear();
+        }
+    }
+}
